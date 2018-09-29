@@ -4,7 +4,7 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import { transformFileSync } from 'babel-core';
+import { transformFileSync } from '@babel/core';
 
 // --------------------------------
 // Variables
@@ -23,7 +23,17 @@ describe('remove-code.vars', () => {
 
     before(() => {
         const mockPath = path.join(dataDir, 'mock.js');
-        actual = transformFileSync(mockPath).code;
+        const options = {
+            plugins: [
+                ['./src/index.js', {
+                    var: ['stripA', 'stripB', 'stripC', 'stripD', 'stripE', 'stripF', 'stripG', 'stripH', 'stripI', 'global.stripProp', 'stripIdentifier']
+                }]
+            ],
+            configFile: false,
+            babelrc: false,
+            retainLines: true
+        };
+        actual = transformFileSync(mockPath, options).code;
 
         fs.writeFileSync(path.join(dataDir, '_tmp_test.js'), actual, { encoding: 'UTF-8' });
     });

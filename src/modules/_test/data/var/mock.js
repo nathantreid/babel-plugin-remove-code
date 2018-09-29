@@ -20,6 +20,11 @@ export const keepG = {};
 export const stripHPattern = {};
 export const keepHPattern = {};
 
+
+const stripD = '';
+const keepD = '';
+const stripIPattern = '';
+const keepIPattern = '';
 export { stripD };
 export { keepD };
 export { stripIPattern };
