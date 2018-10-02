@@ -11,11 +11,10 @@ import { remove as removeVar } from './var.js';
  * Removes target references
  *
  * @param {object} t
- * @param {array} opts
  * @param {object} path
  * @returns
  */
-const removeTargetRefs = (t, opts = [], path) => {
+const removeTargetRefs = (t, path) => {
     const specifiers = path && path.specifiers || path && path.node && path.node.specifiers || [];
 
     specifiers.forEach((specifier) => {
@@ -48,7 +47,7 @@ const remove = (t, opts = [], path) => {
 
     // It doesn't exist in the options
     if (!matches(opts, source.value)) { return; }
-    removeTargetRefs(t, opts, path);
+    removeTargetRefs(t, path);
 
     !path.removed && path.remove();
 };
